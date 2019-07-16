@@ -1,0 +1,14 @@
+#.DESCRIPTION
+# Shell scrip to see what ip's are available within the provided subnet
+#.NOTES
+#Author: Felix Mathew
+#Date:   July 2019    
+#!/bin/bash
+
+echo "This will scan the the last octet of the provided subnet"
+read network
+for host in {1..254}; do
+    ping -c1 $network$host &>/dev/null;
+    [ $? -eq 0 ] && echo "$network$host is up"
+ echo "done checking host: " $network$host
+done
